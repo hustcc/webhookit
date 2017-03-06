@@ -9,7 +9,7 @@
 
 > **pip install webhookit**
 
-Python 2 / 3 are all supported. After install, you can get an command name `webhookit` and `webhookit_config` in your system.
+Python 2 / 3 are all supported. After install, you can get two commands named `webhookit` and `webhookit_config` in your system.
 
 
 # 2. Usage
