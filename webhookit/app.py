@@ -15,7 +15,7 @@ import temp
 import parser
 
 
-__version__ = '0.0.6.dev4'
+__version__ = '0.0.6.dev5'
 
 
 monkey.patch_all()  # patch
@@ -27,6 +27,8 @@ webhook_cnt = 0  # webhook 计数，每次重启都清空
 
 @flask_instance.route('/')
 def index():
+    global webhook_cnt
+
     config = flask_instance.config.get('WEBHOOKIT_CONFIGURE', None) or {}
     config = utils.filter_sensitive(config)
     return flask.render_template_string(temp.INDEX_HTML_TEMP,
