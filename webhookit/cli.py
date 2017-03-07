@@ -4,11 +4,10 @@ Created on 2017-03-03
 
 @author: hustcc
 '''
-
+from __future__ import absolute_import
+from webhookit import app, temp
 import click
-import app
 import os
-import temp
 
 
 @click.command()

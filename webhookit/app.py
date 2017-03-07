@@ -4,18 +4,17 @@ Created on Mar 3, 2017
 
 @author: hustcc
 '''
+from __future__ import absolute_import
+from webhookit import utils, temp, parser
 import flask
 from flask import Flask
 from flask.globals import request
 from gevent.wsgi import WSGIServer
 from gevent import monkey
 import json
-import utils
-import temp
-import parser
 
 
-__version__ = '0.0.6.dev5'
+__version__ = '0.0.6.dev6'
 
 
 monkey.patch_all()  # patch
