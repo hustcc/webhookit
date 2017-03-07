@@ -1,23 +1,22 @@
 # webhookit
 
-> A simple cli tool to create http server for git webhook, **GitHub**, **GitLab**, **GitOsc**, **Gogs** are all supported.
+> 一个极简的命令行版本的 git webhok，部署容易，非常简单就可以部署一个 webhook server。支持**GitHub**, **GitLab**, **GitOsc**, **Gogs**。Python 2 / 3 都支持。
 
-[LIVE DEMO](http://webhookit.hust.cc) | [中文说明文档](README_ZH.md)
+[在线实例展示](http://webhookit.hust.cc) | [English README](README.md)
 
 [![Latest Stable Version](https://img.shields.io/pypi/v/webhookit.svg)](https://pypi.python.org/pypi/webhookit) [![Build Status](https://travis-ci.org/hustcc/webhookit.svg?branch=master)](https://travis-ci.org/hustcc/webhookit) ![GitHub](http://shields.hust.cc/Supported-GitHub-brightgreen.svg) ![GitLab](http://shields.hust.cc/Supported-GitLab-green.svg) ![GitOsc](http://shields.hust.cc/Supported-GitOsc-blue.svg) ![Gogs](http://shields.hust.cc/Supported-Gogs-yellowgreen.svg)
 
 
-# 1. Install
+# 1. 安装
 
 > **pip install webhookit**
 
-Python 2 / 3 are all supported. After install, you can get two commands named `webhookit` and `webhookit_config` in your system.
+支持 Python 2 / 3。安装之后，在系统中可以得到两个命令工具：`webhookit` and `webhookit_config`。
 
 
-# 2. Usage
+# 2. 使用
 
-Run `webhookit --help` to get help content of the command. Help content below:
-
+运行 `webhookit --help` 可以得到命令的帮助信息，具体的信息如下：
 
 ```sh
 # webhookit --help
@@ -29,37 +28,37 @@ Options:
   --help                 Show this message and exit.
 ```
 
-Run **`webhookit_config`** to get the config template strings.
+运行 **`webhookit_config`** 可以得到工具配置的模版内容。
 
-Run **`webhookit -c config.py -p 18340`**  to start the http server for git webhook.
+运行 **`webhookit -c config.py -p 18340`** 开启一个 webhook 的 http 服务器。
 
 
-# 3. Example
+# 3. 一个示例
 
-Here is an simple example to run the `webhookit` http server.
+下面是一个简单的例子，用来展示如何使用本工具：
 
 ```sh
-# 1. install webhookit
+# 1. 安装 webhookit
 pip install webhookit
 
-# 2. initial a webhookit config file
+# 2. 初始化一个配置模版
 webhookit_config > /home/hustcc/webhook-configs/config4hustcc.py
 
-# 3. update config4hustcc.py with your own config and save
+# 3. 更新 config4hustcc.py 配置内容
 vim config4hustcc.py
 
-# 4. run webhookit http server
+# 4. 运行 http server
 webhookit -c config4hustcc.py
 ```
 
-Then open `http://host:18340` in your browser, can see: 
+然后在浏览器中打开 `http://host:18340` 就可以看到下面的一些信息了：
 
-1. The webhook status.
-2. The webhook url.
-3. The webhook server configures.
+1. webhook 执行的状态；
+2. webhook 的 URL 地址；
+3. webhook 的配置信息（隐藏私密信息）；
 
 
-# 4. configure file
+# 4. 配置文件说明
 
 ```py
 # -*- coding: utf-8 -*-
@@ -88,11 +87,11 @@ WEBHOOKIT_CONFIGURE = {
 }
 ```
 
-The python var name `WEBHOOKIT_CONFIGURE` can not be modified.
+Python 变量名 `WEBHOOKIT_CONFIGURE` 不要去修改。
 
-Each webhook has it's key with format of `'repo_name/branch_name'`, Each webhook can trigger a group of servers, which is the value of the key.
+每个 webhook 都用仓库的名字和分支名字 `'repo_name/branch_name'` 作为它的键值，每个 webhook 可以触发一组服务器，这些服务器的配置信息存储在一个数组中。
 
-Server can be remote and local, if local, keep `HOST`, `PORT`, `USER`, `PWD` be empty.
+服务器可以是远程的服务器，也可以是本地机器，如果要触发本机的脚本运行，那么请保持 `HOST`, `PORT`, `USER`, `PWD` 这些配置为空，或者不存在这些键值。
 
 
 # 5. License
