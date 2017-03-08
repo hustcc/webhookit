@@ -58,3 +58,4 @@ target/
 .pydevproject
 .project
 .settings
+tests/_*
