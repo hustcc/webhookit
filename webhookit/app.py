@@ -14,7 +14,7 @@ from gevent import monkey
 import json
 
 
-__version__ = '0.0.6.dev6'
+__version__ = '0.0.6.dev7'
 
 
 monkey.patch_all()  # patch
@@ -22,6 +22,7 @@ flask_instance = Flask(__name__)
 
 
 webhook_cnt = 0  # webhook 计数，每次重启都清空
+webhook_last = ''
 
 
 @flask_instance.route('/')
@@ -33,13 +34,14 @@ def index():
     return flask.render_template_string(temp.INDEX_HTML_TEMP,
                                         version=__version__,
                                         count=webhook_cnt,
+                                        date=webhook_last,
                                         config=json.dumps(config,
                                                           indent=4))
 
 
 @flask_instance.route('/webhookit', methods=['POST', 'GET'])
 def webhookit():
-    global webhook_cnt
+    global webhook_cnt, webhook_last
 
     data = utils.get_parameter('hook', None)
     if data is None:
@@ -63,6 +65,8 @@ def webhookit():
                 utils.do_webhook_shell(s, data)
                 webhook_cnt += 1
                 cnt += 1
+                # 更新最后执行的时间
+                webhook_last = utils.current_date()
             t = 'Processed in thread, total %s threads.' % cnt
             return utils.standard_response(True, t)
         else:

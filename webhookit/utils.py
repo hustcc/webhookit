@@ -46,8 +46,11 @@ def async(f):
 
 # log
 def log(t):
-    now_string = datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S")
-    click.echo('%s: %s' % (now_string, t))
+    click.echo('%s: %s' % (current_date(), t))
+
+
+def current_date():
+    return datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S")
 
 
 # 过滤服务器配置信息的敏感信息

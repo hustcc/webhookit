@@ -68,7 +68,7 @@ INDEX_HTML_TEMP = '''
     </a> is a simple git webhook cli tool for automation tasks.
   </p>
   <h2> The SERVER status </h2>
-  <pre>Trigger count <strong>{{count}}.</strong></pre>
+  <pre>Trigger count <strong>{{count}}</strong>. Last trigger at <strong>{{date or 'None'}}</strong>.</pre>
   <h2> The WEBHOOK url </h2>
   <pre><strong id="webhook_url"></strong></pre>
   <h2> The WEBHOOK configure </h2>
