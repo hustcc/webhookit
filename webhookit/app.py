@@ -14,7 +14,7 @@ from gevent import monkey
 import json
 
 
-__version__ = '0.0.6.dev7'
+__version__ = '0.0.6.dev8'
 
 
 monkey.patch_all()  # patch
@@ -23,11 +23,12 @@ flask_instance = Flask(__name__)
 
 webhook_cnt = 0  # webhook 计数，每次重启都清空
 webhook_last = ''
+webhook_repo = ''  # webhook hook 哪一个 git 仓库
 
 
 @flask_instance.route('/')
 def index():
-    global webhook_cnt
+    global webhook_cnt, webhook_last, webhook_repo
 
     config = flask_instance.config.get('WEBHOOKIT_CONFIGURE', None) or {}
     config = utils.filter_sensitive(config)
@@ -35,13 +36,14 @@ def index():
                                         version=__version__,
                                         count=webhook_cnt,
                                         date=webhook_last,
+                                        repo=webhook_repo,
                                         config=json.dumps(config,
                                                           indent=4))
 
 
 @flask_instance.route('/webhookit', methods=['POST', 'GET'])
 def webhookit():
-    global webhook_cnt, webhook_last
+    global webhook_cnt, webhook_last, webhook_repo
 
     data = utils.get_parameter('hook', None)
     if data is None:
@@ -67,6 +69,8 @@ def webhookit():
                 cnt += 1
                 # 更新最后执行的时间
                 webhook_last = utils.current_date()
+                # 更新最后执行的 git 仓库
+                webhook_repo = webhook_key
             t = 'Processed in thread, total %s threads.' % cnt
             return utils.standard_response(True, t)
         else:
@@ -83,7 +87,7 @@ def webhookit():
 
 def runserver(port=18340):
     flask_instance.config['PORT'] = port
-
+    # flask_instance.run('0.0.0.0', port, debug=False, threaded=True)
     http_server = WSGIServer(('0.0.0.0', port), flask_instance)
     http_server.serve_forever()
 
