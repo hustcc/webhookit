@@ -76,7 +76,7 @@ INDEX_HTML_TEMP = '''
   <pre>{{config}}</pre>
   <br />
 
-  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <!-- sorry for ad -->
   <ins class="adsbygoogle"
        style="display:block"
