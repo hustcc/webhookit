@@ -14,7 +14,7 @@ from gevent import monkey
 import json
 
 
-__version__ = '0.0.6.dev8'
+__version__ = '0.0.7'
 
 
 monkey.patch_all()  # patch

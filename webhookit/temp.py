@@ -38,8 +38,9 @@ INDEX_HTML_TEMP = '''
 <head>
   <title>hustcc/webhookit: Simple git webhook cli tool for automation tasks.</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="hustcc, github, gitlab, gogs, gitosc, git-webhook, webhookit" />
+  <meta name="description" content="webhookit is a simple git webhook cli tool for automation tasks with simple web gui, github, gitlab, gogs, gitosc are supported." />
   <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAkUExURUREQEJJU0JJU0JJU0JJU0JJU0JJUkNJUUNIUEJJU0JJU0JJUxF2VDUAAAAMdFJOUwP7g0WeZDIeE8bds9k71KMAAABgSURBVAjXY2BAAIsCKCNpO5hibuBcDWZUKCQJBrABGerORhOFWYCMbitLLUFFoHoORxGhiYIewUBNgkAg5cXAIumkGhpsOoUhqgFqnBPMAm0YozA4AcJg2yhpABWDWA4ArZ0P7hwi9EMAAAAASUVORK5CYII="/>
-  <link rel="bookmark" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAkUExURUREQEJJU0JJU0JJU0JJU0JJU0JJUkNJUUNIUEJJU0JJU0JJUxF2VDUAAAAMdFJOUwP7g0WeZDIeE8bds9k71KMAAABgSURBVAjXY2BAAIsCKCNpO5hibuBcDWZUKCQJBrABGerORhOFWYCMbitLLUFFoHoORxGhiYIewUBNgkAg5cXAIumkGhpsOoUhqgFqnBPMAm0YozA4AcJg2yhpABWDWA4ArZ0P7hwi9EMAAAAASUVORK5CYII="/>
   <style type="text/css">
     body {
       max-width: 1000px;
@@ -74,6 +75,18 @@ INDEX_HTML_TEMP = '''
   <h2> The WEBHOOK configure </h2>
   <pre>{{config}}</pre>
   <br />
+
+  <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- sorry for ad -->
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7292810486004926"
+       data-ad-slot="7806394673"
+       data-ad-format="auto"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
   <p>Code of <a href="https://github.com/hustcc/webhookit">hustcc/webhookit</a> hosted on github. Authored by <a href="https://github.com/hustcc">hustcc</a>.</p>
   <p>Current running version: <a href="/">v{{version}}</a></p>
   <script type="text/javascript">
