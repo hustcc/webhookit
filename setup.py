@@ -7,22 +7,22 @@ import os
 
 
 DOC = '''
-## 一、安装
+## 1. Install
 
 > **pip install webhookit**
 
-然后在系统中会得到 `webhookit_config` 和 `webhookit` 的命令 cli 工具。
+Then get cli command `webhookit_config` and `webhookit`.
 
 
-## 二、使用
+## 2. Usage
 
-简单使用方法如下：
+Simple, like below:
 
 > **webhookit_config > config.py**
 
 > **webhookit -c config.py -p 18340**
 
-或者使用 `webhookit --help` 查看帮助信息和具体详细的使用方法。
+Or you can `webhookit --help` to get the help content.
 '''
 
 
@@ -53,8 +53,7 @@ setup(name='webhookit',
       license='MIT',
       install_requires=[
         'click',
-        'flask',
-        'gevent'
+        'tornado',
       ],
       classifiers=[
         'Intended Audience :: Developers',

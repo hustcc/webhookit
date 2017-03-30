@@ -5,7 +5,8 @@ Created on 2017-03-03
 @author: hustcc
 '''
 from __future__ import absolute_import
-from webhookit import app, temp
+from tornado.options import define, options, parse_config_file
+from webhookit import temp, app
 import click
 import os
 
@@ -20,8 +21,13 @@ def webhookit_server_entry(config, port):
     if not config:
         click.echo('webhookit: `config` should not be empty.')
         return
+
     config_path = os.path.join(os.path.abspath(os.curdir), config)
-    app.flask_instance.config.from_pyfile(config_path)
+    # load pyfile configure
+    define('WEBHOOKIT_CONFIGURE', type=dict)
+    parse_config_file(config_path)
+    app.WEBHOOKIT_CONFIGURE = options.WEBHOOKIT_CONFIGURE
+
     click.echo('webhookit: HTTP Server started. Listening %s...' % port)
     app.runserver(port=port)
 
