@@ -1,10 +1,10 @@
 # webhookit
 
-> 一个极简的命令行版本的 git webhok，部署容易，非常简单就可以部署一个 webhook server。支持**GitHub**, **GitLab**, **GitOsc**, **Gogs**。Python 2 / 3 都支持。
+> 一个极简的命令行版本的 git webhok，部署容易，非常简单就可以部署一个 webhook server。支持**GitHub**, **GitLab**, **GitOsc**, **Gogs**, **Coding**。Python 2 / 3 都支持。
 
 [在线实例展示](http://webhookit.hust.cc) | [English README](README.md)
 
-[![Latest Stable Version](https://img.shields.io/pypi/v/webhookit.svg)](https://pypi.python.org/pypi/webhookit) [![Build Status](https://travis-ci.org/hustcc/webhookit.svg?branch=master)](https://travis-ci.org/hustcc/webhookit) ![GitHub](http://shields.hust.cc/Supported-GitHub-brightgreen.svg) ![GitLab](http://shields.hust.cc/Supported-GitLab-green.svg) ![GitOsc](http://shields.hust.cc/Supported-GitOsc-blue.svg) ![Gogs](http://shields.hust.cc/Supported-Gogs-yellowgreen.svg)
+[![Latest Stable Version](https://img.shields.io/pypi/v/webhookit.svg)](https://pypi.python.org/pypi/webhookit) [![Build Status](https://travis-ci.org/hustcc/webhookit.svg?branch=master)](https://travis-ci.org/hustcc/webhookit) ![GitHub](http://shields.hust.cc/Supported-GitHub-brightgreen.svg) ![GitLab](http://shields.hust.cc/Supported-GitLab-green.svg) ![GitOsc](http://shields.hust.cc/Supported-GitOsc-blue.svg) ![Gogs](http://shields.hust.cc/Supported-Gogs-yellowgreen.svg) ![Coding](http://shields.hust.cc/Supported-Coding-yellow.svg)
 
 
 # 1. 安装

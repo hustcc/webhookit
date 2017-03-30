@@ -1,10 +1,10 @@
 # webhookit
 
-> A simple cli tool to create http server for git webhook, **GitHub**, **GitLab**, **GitOsc**, **Gogs** are all supported.
+> A simple cli tool to create http server for git webhook, **GitHub**, **GitLab**, **GitOsc**, **Gogs**, **Coding** are all supported.
 
 [LIVE DEMO](http://webhookit.hust.cc) | [中文说明文档](README_ZH.md)
 
-[![Latest Stable Version](https://img.shields.io/pypi/v/webhookit.svg)](https://pypi.python.org/pypi/webhookit) [![Build Status](https://travis-ci.org/hustcc/webhookit.svg?branch=master)](https://travis-ci.org/hustcc/webhookit) ![GitHub](http://shields.hust.cc/Supported-GitHub-brightgreen.svg) ![GitLab](http://shields.hust.cc/Supported-GitLab-green.svg) ![GitOsc](http://shields.hust.cc/Supported-GitOsc-blue.svg) ![Gogs](http://shields.hust.cc/Supported-Gogs-yellowgreen.svg)
+[![Latest Stable Version](https://img.shields.io/pypi/v/webhookit.svg)](https://pypi.python.org/pypi/webhookit) [![Build Status](https://travis-ci.org/hustcc/webhookit.svg?branch=master)](https://travis-ci.org/hustcc/webhookit) ![GitHub](http://shields.hust.cc/Supported-GitHub-brightgreen.svg) ![GitLab](http://shields.hust.cc/Supported-GitLab-green.svg) ![GitOsc](http://shields.hust.cc/Supported-GitOsc-blue.svg) ![Gogs](http://shields.hust.cc/Supported-Gogs-yellowgreen.svg) ![Coding](http://shields.hust.cc/Supported-Coding-yellow.svg)
 
 
 # 1. Install
