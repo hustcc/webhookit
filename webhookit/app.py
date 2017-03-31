@@ -13,7 +13,7 @@ import tornado.websocket
 import tornado.template
 
 
-__version__ = '0.0.8.dev1'
+__version__ = '0.0.9'
 
 webhook_cnt = 0  # webhook 计数，每次重启都清空
 webhook_last = ''
