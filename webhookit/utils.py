@@ -4,26 +4,13 @@ Created on Mar 3, 2017
 
 @author: hustcc
 '''
-from flask.globals import request
 from functools import wraps
 from threading import Thread
 import json
 import click
 import datetime
 import copy
-
-
-# get / post data
-def get_parameter(key, default=None):
-    # post参数
-    if request.method == 'POST':
-        param = request.form.get(key, default)
-    # get
-    elif request.method == 'GET':
-        param = request.args.get(key, default)
-    else:
-        return default
-    return param
+import app
 
 
 def standard_response(success, data):
@@ -46,11 +33,23 @@ def async(f):
 
 # log
 def log(t):
-    click.echo('%s: %s' % (current_date(), t))
+    msg = '%s: %s' % (current_date(), t)
+    app.WSHandler.push_msg({'type': 'log', 'msg': msg})
+    click.echo(msg)
 
 
 def current_date():
-    return datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S")
+    return datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S.%f")
+
+
+def filter_server(server):
+    server = copy.deepcopy(server)
+    if is_remote_server(server):
+        server['HOST'] = '***.**.**.**'
+        server['PORT'] = '****'
+        server['USER'] = '*******'
+        server['PWD'] = '*******'
+    return server
 
 
 # 过滤服务器配置信息的敏感信息
@@ -58,11 +57,7 @@ def filter_sensitive(config):
     config = copy.deepcopy(config)
     for v in config.values():
         for server in v:
-            if is_remote_server(server):
-                server['HOST'] = '***.***.***.***'
-                server['PORT'] = '****'
-                server['USER'] = '*******'
-                server['PWD'] = '*******'
+            server = filter_server(server)
     return config
 
 
@@ -132,7 +127,7 @@ def do_ssh_cmd(ip, port, account, pkey, shell, push_data='', timeout=300):
 # 使用线程来异步执行
 @async
 def do_webhook_shell(server, data):
-    log('Start to process server: %s' % json.dumps(server))
+    log('Start to process server: %s' % json.dumps(filter_server(server)))
     script = server.get('SCRIPT', '')
     if script:
         if is_remote_server(server):
@@ -154,5 +149,8 @@ def do_webhook_shell(server, data):
         success = False
         msg = 'There is no SCRIPT configured.'
     # end exec, log data
+    msg = unicode(msg, errors='ignore') or ''
+    msg = msg.strip()
+    msg = msg.replace('\n', ' ')
     log('Completed execute: (%s, %s)' % (success, msg))
     return True

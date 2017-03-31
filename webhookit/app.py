@@ -9,10 +9,11 @@ from webhookit import utils, temp, parser
 import json
 import tornado.ioloop
 import tornado.web
+import tornado.websocket
 import tornado.template
 
 
-__version__ = '0.0.8'
+__version__ = '0.0.8.dev1'
 
 webhook_cnt = 0  # webhook 计数，每次重启都清空
 webhook_last = ''
@@ -30,6 +31,7 @@ class IndexPageHandler(tornado.web.RequestHandler):
                               count=webhook_cnt,
                               date=webhook_last,
                               repo=webhook_repo,
+                              logs=WSHandler.logs,
                               config=json.dumps(config,
                                                 indent=4)))
 
@@ -65,6 +67,8 @@ class WebhookitHandler(tornado.web.RequestHandler):
                     webhook_last = utils.current_date()
                     # 更新最后执行的 git 仓库
                     webhook_repo = webhook_key
+                msg = [webhook_cnt, webhook_last, webhook_repo]
+                WSHandler.push_msg({'type': 'stat', 'msg': msg})
                 t = 'Processed in thread, total %s threads.' % cnt
                 self.write(utils.standard_response(True, t))
             else:
@@ -82,9 +86,50 @@ class WebhookitHandler(tornado.web.RequestHandler):
         return self.post()
 
 
+class WSHandler(tornado.websocket.WebSocketHandler):
+    clients = set()
+    logs = []
+    log_size = 10  # 初始仅仅显示最开始 10 条日志记录
+
+    def open(self):
+        WSHandler.clients.add(self)
+
+    def on_close(self):
+        WSHandler.clients.remove(self)
+
+    @classmethod
+    def update_logs(cls, msg):
+        if msg.get('type') == 'log':
+            cls.logs.append(msg)
+            if len(cls.logs) > cls.log_size:
+                cls.logs = cls.logs[-cls.log_size:]
+
+    @classmethod
+    def push_msg(cls, msg):
+        '''
+        msg:
+        {
+            type: log|stat
+            msg: msg
+        }
+        '''
+        WSHandler.update_logs(msg)
+        msg = json.dumps(msg)
+        for client in cls.clients:
+            try:
+                client.write_message(msg)
+            except Exception, e:
+                utils.log("Error sending message: %s" % str(e))
+
+    def on_message(self, message):
+        # nothing needed to do
+        pass
+
+
 application = tornado.web.Application([
     (r'/', IndexPageHandler),
     (r'/webhookit', WebhookitHandler),
+    (r'/ws', WSHandler)
 ])
 
 
