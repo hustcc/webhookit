@@ -62,11 +62,12 @@ def filter_server(server):
 
 # 过滤服务器配置信息的敏感信息
 def filter_sensitive(config):
-    config = copy.deepcopy(config)
-    for v in config.values():
+    fconfig = {}
+    for k, v in config.items():
+        fconfig[k] = []
         for server in v:
-            server = filter_server(server)
-    return config
+            fconfig[k].append(filter_server(server))
+    return fconfig
 
 
 # if host port user pwd all is not empty, then it is a remote server.
