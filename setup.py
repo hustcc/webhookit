@@ -43,7 +43,7 @@ def find_version(*file_paths):
 
 
 setup(name='webhookit',
-      version=find_version('webhookit/app.py'),
+      version='0.1.0',
       description=('Bind git webhooks with actions. '
                    'Simple git webhook cli tool for automation tasks.'),
       long_description=DOC,
