@@ -10,7 +10,7 @@ import json
 import click
 import datetime
 import copy
-import app
+from webhookit import app
 
 
 if unicode:  # noqa
