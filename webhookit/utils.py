@@ -10,15 +10,17 @@ import json
 import click
 import datetime
 import copy
-import app
+from webhookit import app
 
 
-if unicode:  # noqa
-    # py2
-    the_unicode = unicode  # noqa
-else:  # noqa
+try:
+    unicode  # noqa
+except NameError:
     # py3
     the_unicode = str  # noqa
+else:  # noqa
+    # py2
+    the_unicode = unicode  # noqa
 
 
 def standard_response(success, data):
